@@ -2,19 +2,48 @@
 
 
 ## Loading and preprocessing the data
+### Unziping the file
+Using unzip()
+```{r}
+unzip("activity.zip")
+dir()
+```
 
+Using read.csv()
+```{r}
+data <- read.csv("activity.csv")
+str(data)
+data_steps_na <- is.na(data[,1]["steps" == NA])
+```
 
 
 ## What is mean total number of steps taken per day?
-
+### head() is used to show you limited data
+```{r}
+clean_data <- subset(data,data$steps != data_steps_na)
+x <- aggregate(steps ~ date , data = clean_data, sum)
+head(x)
+y <- aggregate(steps ~ date , data = clean_data, mean)
+head(y)
+z <- aggregate(steps ~ date , data = clean_data, median)
+head(y)
+hist(y[,2], xlab="Mean of Steps", main="Histogram of Steps")
+```
 
 
 ## What is the average daily activity pattern?
-
+### note head() is used
+```{r}
+x <- aggregate(steps ~ date , data = clean_data, mean)
+head(x)
+```
 
 
 ## Imputing missing values
-
+```{r}
+data_steps_na <- is.na(data[,1]["steps" == NA])
+clean_data <- subset(data,data$steps != data_steps_na)
+```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
