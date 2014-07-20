@@ -27,7 +27,7 @@ y <- aggregate(steps ~ date , data = clean_data, mean)
 head(y)
 z <- aggregate(steps ~ date , data = clean_data, median)
 head(y)
-hist(y[,2], xlab="Mean of Steps", main="Histogram of Steps")
+hist(x[,2], xlab="Total of Steps", main="Histogram of Steps")
 ```
 
 
